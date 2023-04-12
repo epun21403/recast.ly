@@ -7,22 +7,8 @@ import VideoPlayer from './VideoPlayer.js';
 
 var App = () => {
 
-  const [video, setVideo] = React.useState(exampleVideoData[0]);
-
-  var videoClick = function() {
-    console.log('value', e.target);
-    // console.log('videoID', videoID);
-    // var targetVideo = e.target;
-    // exampleVideoData.forEach(function(video) {
-    //   if (video.snippet.title === targetVideo) {
-
-    //   }
-    // });
-    // setVideo();
-
-  };
-
-
+  const [videos, setVideos] = React.useState(exampleVideoData);
+  const [selectedVideo, setselectedVideo] = React.useState(exampleVideoData[0]);
 
   return (
     <div>
@@ -33,15 +19,15 @@ var App = () => {
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <VideoPlayer video={video}/>
+          <VideoPlayer video={selectedVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={exampleVideoData} videoClick={videoClick}/>
+          <VideoList setselectedVideo={(v) => setselectedVideo(v)} videos={videos} />
         </div>
       </div>
     </div>);
 };
-// videoID={videoID}
+
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 
